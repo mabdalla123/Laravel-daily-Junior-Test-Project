@@ -26,4 +26,7 @@ it("can login an Admin User", function () {
     ]);
 
     $response->assertStatus(200);
+
+    //delete the Test Data
+    $user->delete();
 });
