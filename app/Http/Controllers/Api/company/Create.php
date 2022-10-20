@@ -16,7 +16,7 @@ class Create extends Controller
         //upload the file
         if ($request->hasFile("logo")) {
             $logo = $request->file("logo");
-            $logo->storeAs("public/storage/images", $logo->getClientOriginalName());
+            $logo->storeAs("/public", $logo->getClientOriginalName());
             $data = $request->validated();
             $data["logo"] = $logo->getClientOriginalName();
             $company = Company::create($data);

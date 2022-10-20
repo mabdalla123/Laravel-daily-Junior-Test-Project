@@ -16,7 +16,7 @@ class Update extends Controller
         $data = $request->validated();
         if ($request->hasFile("logo")) {
             $logo = $request->file("logo");
-            $logo->storeAs("public/storage/images", $logo->getClientOriginalName());
+            $logo->storeAs("/public", $logo->getClientOriginalName());
             $data["logo"] = $logo->getClientOriginalName();
         }
         $company = $company->update($data);
