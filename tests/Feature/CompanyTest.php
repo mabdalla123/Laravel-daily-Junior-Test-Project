@@ -18,8 +18,8 @@ it('Can create a Company', function () {
 it("can Read a Company",function(){
 
     
-    Company::latest();
-    $response = get("api/company/".Company::latest()->first()->id);
+    $company = Company::latest()?? Company::factory()->create();
+    $response = get("api/company/".$company->first()->id);
     $response->assertStatus(200);
 
 });
@@ -27,8 +27,9 @@ it("can Read a Company",function(){
 
 it("can Update a Company",function(){
 
+    $company = Company::latest()?? Company::factory()->create();
     
-    $response = put("api/company/".Company::latest()->first()->id,Company::factory()->raw());
+    $response = put("api/company/".$company->id,Company::factory()->raw());
     $response->assertStatus(200);
 
 });
@@ -36,8 +37,9 @@ it("can Update a Company",function(){
 
 it("can delete a Company",function(){
 
+    $company = Company::latest()?? Company::factory()->create();
     
-    $response = get("api/company/".Company::latest()->first()->id);
+    $response = get("api/company/".$company->id);
     $response->assertStatus(200);
 
 });
